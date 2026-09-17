@@ -1,0 +1,656 @@
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid #3a3744;
+  background:#24222c;
+  border-radius:5px;
+  padding:4px 9px;
+  font-size:10px;
+  letter-spacing:.65px;
+  font-weight:600;
+  line-height:1.5;
+  color:#d2cedd
+}
+.badge.purple{
+  background:#30243f;
+  border-color:#4a3766;
+  color:#d0b6ff
+}
+.badge.pink{
+  background:#3a2430;
+  color:#fac0da;
+  border-color:#5d364b
+}
+.badge.green{
+  color:#a7dec0;
+  background:#1f342a;
+  border-color:#31533f
+}
+.asset{
+  position:relative;
+  display:inline-flex;
+  flex-shrink:0;
+  align-items:center;
+  justify-content:center;
+  width:46px;
+  height:46px;
+  background:linear-gradient(140deg,#443554,#272333);
+  border:1px solid #58416e;
+  border-radius:8px;
+  color:#d9c6f2;
+  font-family:var(--mono);
+  font-size:14px;
+  font-weight:700;
+  overflow:hidden
+}
+.asset img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.asset.small{
+  width:30px;
+  height:30px;
+  font-size:10px;
+  border-radius:5px
+}
+.panel{
+  padding:24px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px
+}
+.panel-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:20px
+}
+.panel-heading p{
+  font-size:12px;
+  margin:5px 0 0
+}
+.flow{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px
+}
+.flow-step{
+  padding:7px 11px;
+  font-size:12px;
+  background:#25222f;
+  border:1px solid #3c344b;
+  border-radius:5px;
+  color:#d2c3ed
+}
+.arrow{
+  font-size:15px;
+  color:#777180
+}
+.notice{
+  border-left:3px solid var(--accent);
+  background:#211c2c;
+  padding:18px 22px;
+  margin-top:24px;
+  border-radius:0 8px 8px 0
+}
+.notice strong{
+  color:#dbc6ff;
+  font-size:14px
+}
+.notice p{
+  font-size:13px;
+  margin:7px 0 0
+}
+.summary-card{
+  background:var(--surface);
+  padding:20px;
+  border-radius:9px;
+  min-width:0
+}
+.summary-card .micro{
+  font-size:9px;
+  letter-spacing:.8px
+}
+.summary-card strong{
+  display:block;
+  line-height:1.6;
+  font-size:15px;
+  margin-top:12px
+}
+.core-card{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:22px;
+  background:var(--surface);
+  min-width:0
+}
+.core-card .micro{
+  font-size:10px
+}
+.core-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:20px 0
+}
+.core-symbol{
+  font-size:30px;
+  line-height:1;
+  color:#e0c89b
+}
+.core-card.chaos .core-symbol{
+  color:#e99bb4
+}
+.core-card>p{
+  font-size:12px
+}
+.breakpoint{
+  display:flex;
+  gap:13px;
+  padding:15px 0;
+  border-top:1px solid var(--line);
+  align-items:flex-start
+}
+.breakpoint b{
+  font:600 11px var(--mono);
+  color:#e0c89b;
+  padding:5px;
+  background:#383025;
+  border-radius:4px;
+  white-space:nowrap
+}
+.breakpoint p{
+  margin:0;
+  font-size:12px
+}
+.source-tag{
+  display:inline-block;
+  margin-top:12px;
+  font-size:10px;
+  color:#aac9ac
+}
+.minimum{
+  background:linear-gradient(110deg,#332843,#211c2a);
+  padding:22px 26px;
+  margin:20px 0;
+  border-radius:9px;
+  border:1px solid #554164
+}
+.minimum .micro{
+  color:var(--accent)
+}
+.minimum strong{
+  display:block;
+  font-size:21px;
+  margin-top:8px
+}
+.minimum p{
+  margin:6px 0 0;
+  font-size:13px
+}
+.priority-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding-left:22px;
+  font-size:13px;
+  margin-bottom:0
+}
+.priority-list li::marker{
+  color:var(--accent);
+  font-family:var(--mono)
+}
+.rune{
+  display:inline-flex;
+  gap:6px;
+  align-items:center;
+  font-size:12px
+}
+.rune small{
+  font-size:9px;
+  text-transform:uppercase;
+  color:inherit;
+  border:1px solid currentColor;
+  border-radius:3px;
+  line-height:1.5;
+  padding:1px 5px;
+  margin-left:4px
+}
+.legendary{
+  color:#ffb76d
+}
+.epic{
+  color:#c69bff
+}
+.rare{
+  color:#85bfff
+}
+.uncommon{
+  color:#8edaa7
+}
+.skill-card{
+  padding:20px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  min-width:0
+}
+.skill-title{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.skill-title h3{
+  font-size:15px
+}
+.skill-role{
+  display:block;
+  font-size:9px;
+  letter-spacing:.2px;
+  color:#b6a5d2;
+  margin-top:3px
+}
+.skill-title code{
+  margin-left:auto;
+  font-size:12px;
+  white-space:nowrap;
+  color:#d4c7e7;
+  background:#292334;
+  padding:5px 8px;
+  border-radius:5px
+}
+.skill-card.damage{
+  border-color:#62404f
+}
+.damage .asset{
+  background:linear-gradient(140deg,#603448,#32222d);
+  border-color:#805168;
+  color:#ffbfd7
+}
+.damage .skill-role{
+  color:var(--pink)
+}
+.tripods{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0
+}
+.tripods>div{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  line-height:1.4;
+  font-size:12px
+}
+.tripods .micro{
+  font-size:9px
+}
+.skill-rune{
+  padding-top:12px;
+  border-top:1px solid var(--line)
+}
+.skill-note{
+  font-size:12px;
+  margin:12px 0 0;
+  color:var(--muted)
+}
+.import-panel{
+  margin-top:24px
+}
+.import-panel code{
+  display:block;
+  overflow-wrap:anywhere;
+  background:#111015;
+  padding:16px;
+  border-radius:5px;
+  font-size:12px;
+  color:#c9b9e2;
+  line-height:1.9;
+  user-select:all
+}
+.copy-status{
+  display:block;
+  min-height:21px;
+  margin-top:10px;
+  font-size:12px;
+  color:var(--accent)
+}
+.gem-summary{
+  display:flex;
+  gap:10px;
+  margin:24px 0
+}
+.gem-table{
+  margin:18px 0;
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden
+}
+.gem-row{
+  display:grid;
+  grid-template-columns:85px 1fr 175px;
+  align-items:center;
+  gap:15px;
+  padding:13px 20px;
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+  font-size:12px
+}
+.gem-row:last-child{
+  border:0
+}
+.gem-head{
+  background:#212128;
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.5px
+}
+.gem-skill{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.rank{
+  font-family:var(--mono);
+  color:var(--muted)
+}
+.filler{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-top:22px
+}
+.filler p{
+  font-size:13px
+}
+.gem-diamond{
+  font-size:50px;
+  color:var(--muted)
+}
+.rotation-block{
+  background:var(--surface);
+  border:1px solid #40364f;
+  border-radius:10px;
+  overflow:hidden
+}
+.block-label{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:20px
+}
+.block-label>span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border:1px solid #6b528e;
+  background:#3a2a50;
+  color:#dfc9ff;
+  font:500 20px var(--mono);
+  border-radius:7px
+}
+.block-label h3{
+  font-size:14px
+}
+.block-label p{
+  margin:2px 0 0;
+  font-size:10px;
+  color:var(--muted)
+}
+.rotation-skills{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:8px 20px 24px;
+  min-height:144px
+}
+.rotation-skills>.arrow{
+  padding-top:14px
+}
+.rotation-skill{
+  flex:1;
+  max-width:125px;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+  font-size:12px;
+  line-height:1.4
+}
+.rotation-skill small{
+  font-size:10px;
+  color:var(--accent)
+}
+.block-finish{
+  background:#211d2b;
+  padding:12px 20px;
+  border-top:1px solid #393045
+}
+.block-finish .flow-step{
+  padding:3px 8px;
+  font-size:11px
+}
+.block-finish .flow-step:last-child{
+  color:var(--pink);
+  border-color:#674053;
+  background:#382430
+}
+.base-loop{
+  margin-top:26px
+}
+.base-loop h3{
+  margin-top:5px
+}
+.loop-flow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap
+}
+.loop-flow a{
+  width:38px;
+  height:42px;
+  background:#30263f;
+  border:1px solid #614e7c;
+  color:#d7baff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  font:16px var(--mono)
+}
+.loop-flow a:hover{
+  background:#503a6f
+}
+.repeat{
+  font-size:12px;
+  color:var(--accent)
+}
+.base-loop>p{
+  font-size:12px
+}
+.base-loop ol{
+  padding-left:24px;
+  margin-top:24px
+}
+.base-loop li{
+  padding:15px 0;
+  border-top:1px solid var(--line);
+  font-size:12px
+}
+.base-loop li strong{
+  display:block;
+  margin-bottom:8px;
+  color:var(--accent)
+}
+.expanded-finish{
+  display:block;
+  margin-top:8px;
+  color:var(--muted)
+}
+.recovery-card{
+  padding:23px;
+  background:var(--surface);
+  border-radius:10px
+}
+.recovery-card .micro{
+  color:var(--accent)
+}
+.recovery-card h3{
+  font-size:16px;
+  margin-top:12px
+}
+.recovery-card p{
+  font-size:13px
+}
+.recovery-card small{
+  display:block;
+  border-top:1px solid var(--line);
+  padding-top:12px
+}
+.engraving-list{
+  list-style:none;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:24px 0 0;
+  padding:0
+}
+.engraving-list li{
+  padding:14px 18px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:7px;
+  font-size:13px
+}
+.engraving-list span{
+  color:var(--gold);
+  margin-right:12px
+}
+.source-reference{
+  padding:20px 0;
+  border-bottom:1px solid var(--line)
+}
+.source-reference>div{
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+.source-reference a{
+  font-size:13px
+}
+.source-reference p{
+  font-size:12px;
+  margin:10px 0 0;
+  max-width:800px
+}
+.source-reference .badge{
+  flex-shrink:0
+}
+.dps-row{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin:10px 0
+}
+.dps-row meter{
+  flex:1;
+  min-width:100px
+}
+.skill-reference{
+  display: inline;
+}
+.asset.inline-skill{
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: -5px;
+  border-radius: 4px;
+  font-size: 8px;
+}
+.asset:has(img){
+  border-color: #605568;
+  background: #15151b;
+}
+
+/* Category artwork is shared across all Ark Grid builds. */
+.core-symbol {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 49px;
+  width: 49px;
+  height: 49px;
+}
+.core-symbol img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.class-asset img {
+  object-fit: contain;
+  padding: 2px;
+}
+
+/* The same official class emblem identifies both the card and the guide. */
+.asset.class-art {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+  font-size: 40px;
+}
+.asset.class-art img {
+  padding: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px #bba2ff30);
+}
+.asset.class-art:has(img) > span {
+  visibility: hidden;
+}
+.asset.card-class-art {
+  position: absolute;
+  width: 170px;
+  height: 165px;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+}
+.card-art > .badge {
+  position: relative;
+  z-index: 1;
+}
+.asset.guide-class-art {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+@media (max-width: 1200px) {
+  .asset.guide-class-art {
+    width: 120px;
+    height: 120px;
+    margin-left: 12px;
+  }
+}
+@media (max-width: 640px) {
+  .asset.guide-class-art {
+    display: none;
+  }
+}
