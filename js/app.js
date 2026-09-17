@@ -4,6 +4,8 @@ import { escape, badge, asset } from './components/ui.js';
 import { renderGuide } from './guide-renderer.js';
 import { decorateSkillReferences } from './components/skill-references.js';
 
+import { bindRunePresets } from './components/runes.js';
+
 const main = document.querySelector('main');
 const id = new URLSearchParams(location.search).get('guide');
 const guide = getGuide(id);
@@ -18,28 +20,30 @@ if (id && !guide) {
   document.title = `${guide.class} — ${guide.build} ${guide.variant} | ${site.name}`;
   main.innerHTML = renderGuide(guide);
   decorateSkillReferences(main, guide.skills);
-  document.querySelector('#expand-loop').addEventListener('click', (event) => {
+  bindRunePresets(main);
+  document.querySelector('#expand-loop')?.addEventListener('click', (event) => {
     const button = event.currentTarget;
     const expanded = button.getAttribute('aria-expanded') !== 'true';
     button.setAttribute('aria-expanded', String(expanded));
     document.querySelector('#expanded-loop').hidden = !expanded;
     button.textContent = expanded ? 'Compact −' : 'Expanded ＋';
   });
-  document.querySelector('#copy-code').addEventListener('click', async () => {
-    const status = document.querySelector('#copy-status');
+  document.querySelectorAll('[data-copy-code]').forEach((button) => button.addEventListener('click', async () => {
+    const code = document.getElementById(button.dataset.copyCode);
+    const status = document.getElementById(button.dataset.copyStatus);
     try {
-      await navigator.clipboard.writeText(guide.skillImport.code);
+      await navigator.clipboard.writeText(code.textContent);
       status.textContent = 'Código copiado!';
     } catch {
       const range = document.createRange();
-      range.selectNodeContents(document.querySelector('#skill-code'));
+      range.selectNodeContents(code);
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
       status.textContent = 'Cópia indisponível. Código selecionado: pressione Ctrl+C ou copie pelo menu do dispositivo.';
-      document.querySelector('#skill-code').focus();
+      code.focus();
     }
-  });
+  }));
   const links = [...document.querySelectorAll('.sidebar nav a')];
   const observer = new IntersectionObserver((entries) => {
     const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];

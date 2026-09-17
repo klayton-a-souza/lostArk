@@ -1,5 +1,6 @@
-// Official class emblems. Provenance: assets/images/classes/sources.json
+// Class emblems (including community-supplied extraction). Provenance: assets/images/classes/sources.json
 export const classIcons = {
+  "dimensionalist": "assets/images/classes/dimensionalist.svg",
   "assassin": "assets/images/classes/assassin.svg",
   "deathblade": "assets/images/classes/deathblade.svg",
   "reaper": "assets/images/classes/reaper.svg",

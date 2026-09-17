@@ -1,6 +1,6 @@
 # Lost Ark Build Archive
 
-Site pessoal de guias de builds de Lost Ark para consulta durante o jogo. O primeiro guia é **Reaper — Lunar Voice 222 Blink — Post-Patch Ark Grid Build**.
+Site pessoal de guias de builds de Lost Ark para consulta durante o jogo. Guias disponíveis: **Reaper — Lunar Voice 222 Blink** e **Dimensionalist — Time Wilder 222 Spec/Crit**, ambos Post-Patch Ark Grid Build.
 
 HTML, CSS e JavaScript ES Modules, sem backend, pacotes de produção ou etapa de build. A Home é gerada pelo catálogo de guias, e o mesmo renderer atende todas as builds.
 
@@ -24,6 +24,7 @@ data/
   site.js                   Nome e descrição do arquivo
   registry.js               Catálogo de builds
   reaper-lunar-222.js        Conteúdo técnico da Reaper
+  dimensionalist-time-wilder-222.js  Conteúdo técnico da Dimensionalist
 js/
   app.js                    Home, roteamento e interações
   guide-renderer.js         Composição das seções do guia
@@ -59,9 +60,9 @@ As rotas usam `?guide=reaper-lunar-222-blink`, com âncoras como `#rotation`. Li
 ```js
 // data/registry.js — depois de criar e preencher o novo arquivo
 import reaper from './reaper-lunar-222.js';
-import deathblade from './deathblade-remaining-energy.js';
+import dimensionalist from './dimensionalist-time-wilder-222.js';
 
-export const guides = [reaper, deathblade];
+export const guides = [reaper, dimensionalist];
 export const getGuide = (id) => guides.find((guide) => guide.id === id);
 ```
 
@@ -116,3 +117,23 @@ No navegador, confira a Home, abra o card e use as âncoras. `Expanded` abre os 
 4. Quando a publicação concluir, acesse `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/`.
 
 Não há instalação ou build para publicar. `.nojekyll` mantém o site como arquivos estáticos. Home, links de guias, assets e âncoras funcionam no subdiretório do repositório. Esta entrega prepara os arquivos; não configura nem publica um repositório remoto.
+
+## Schema compartilhado — Time Wilder 222
+
+Rota adicionada: `?guide=dimensionalist-time-wilder-222`. A Home continua derivada exclusivamente de `data/registry.js`; a Reaper mantém sua rota e seus dados.
+
+Os componentes de `js/components/guide-panels.js` ampliam o renderer existente:
+
+- `skills[].level`, `code`, `rarity` e `runeAlternative` são opcionais; `tripods` aceita 1–3 entradas. As raridades da Dimensionalist foram fornecidas na revisão incremental de Runes.
+- `stats.recommended` numérico mantém a apresentação `1767+`; quando ausente, aparecem `primary` e `secondary`. `stats.bracelet` aceita `{ title, paragraphs }`.
+- `arkGrid.priorities` é opcional; `minimumLabel` e `popularityNote` permitem distinguir o núcleo mecânico de um requisito universal. Links de cores usam o tipo real da fonte, sem classificar bases comunitárias como Official.
+- `gemTargets` é um mapa de alvos externos à hotbar (`{ id: { name, role } }`). `gems.filler` é opcional. `referenceLevels: { damage, cooldown }`, `referenceLabel` e `upgradeNotes` documentam exemplos sem transformá-los em mínimos. Timeline Skill não é uma nona skill.
+- `rotation.type` aceita `block-loop` (padrão retrocompatível) e `priority-cycle`. Este último usa `flow`, `note`, `priorities`, `priorityNote` e `panels: [{ title, paragraphs, flow? }]`.
+- `skillImport.alternatives` aceita outros `{ code, note, updated }`, cada um com botão de cópia e fallback manual próprios.
+- `runePresets` contém presets completos `{ id, name, isDefault?, shortDescription?, note?, pairNote?, assignments: [{ skill, rune, rarity, popularity?, alternativeNote? }] }`. O primeiro preset marcado `isDefault` (ou o primeiro da lista) inicia ativo. Dois ou mais presets exibem botões com `aria-pressed`; zero ou um não exibem seletor. `js/components/runes.js` alterna painéis completos apenas dentro de Runes, sem reload, URL ou persistência. Níveis, tripods, gems e demais seções permanecem no setup principal. Percentuais ficam em detalhes expansíveis.
+- `skillSetupLabel`, `skillSetupNote` e `skillSnapshot: { title, note, entries: [{ skill, usage, levels, tripods, runes }] }` distinguem a recomendação pós-balance dos níveis modais do Bible.
+- `engravingAlternatives` e `damagePriority: [{ label, skills }]` são opcionais. `dpsSpread` continua pronto para parses documentados futuros.
+
+Os oito ícones da Dimensionalist foram extraídos da captura fornecida pelo usuário e associados por `skills[].icon` a `assets/images/skills/dimensionalist/<id>.png`. As letras de atalho presentes na captura foram preservadas. O emblema da classe está em `assets/images/classes/dimensionalist.svg`, registrado em `data/class-icons.js`, com a origem comunitária documentada em `assets/images/classes/sources.json`.
+
+A revisão de 17/09/2026 preserva o briefing: Cycle-Optimized (01/08) como principal e Bible Popular / Conviction-Judgment como alternativa. As limitações de validação e as fontes estão em `VALIDATION.md` e na seção Sources do guia.

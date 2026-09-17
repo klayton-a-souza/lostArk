@@ -25,3 +25,11 @@ Nenhuma imagem externa é necessária. Adicione os PNGs nas pastas abaixo: os ca
 - `skills/reaper/silent-rage.png`
 
 As pastas `runes/` e `gems/` reservam espaço para assets futuros. Use somente imagens para as quais você tenha autorização.
+
+## Skills da Dimensionalist
+
+Os oito PNGs em `skills/dimensionalist/` foram recortados da captura fornecida pelo usuário em 17/09/2026, na ordem Needle Strike, Forewarning, Pinpoint Strike, Boundary Break, Cross Thrust, Airsplitter, Temporal Crush e Dimensional Break. Cada recorte preserva os 42 × 44 px disponíveis; a captura corta a extremidade esquerda dos ícones. As letras Q/W/E/R/A/S/D/F fazem parte da imagem e não representam atalhos obrigatórios. Nenhuma imagem de terceiros foi baixada.
+
+## Emblema da Dimensionalist
+
+SVG obtido da [coleção de ícones no Inven](https://www.inven.co.kr/board/lostark/6271/3905703), arquivo `svg/dimension_master.svg` de `svg.zip`. O autor informa extração do site oficial coreano; a origem direta não foi confirmada independentemente. Paths e viewBox preservados; preenchimento branco ajustado para `#ede8d9`, igual à Reaper. Registro compartilhado aplica o ícone à Home, sidebar e cabeçalho. A fonte específica sobrescreve a fonte Global geral em `sources.json`.

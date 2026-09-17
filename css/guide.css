@@ -79,6 +79,18 @@
   min-width:0;
   padding:42px 0 60px
 }
+.stats-text strong{font-size:clamp(20px,2.3vw,30px);letter-spacing:-.5px;overflow-wrap:anywhere}
+.detail-panel,.snapshot{margin-top:22px}
+.detail-panel p,.snapshot p{font-size:13px}
+.detail-panel .flow{margin-top:16px}
+.snapshot summary{cursor:pointer;color:var(--accent);font-weight:600}
+.priority-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0;list-style-position:inside}
+.priority-cards li{font-size:13px;padding:18px}
+.priority-cards li::marker{color:var(--accent);font-family:var(--mono)}
+.skill-title>div{min-width:0}
+.skill-title h3,.flow-step,.summary-card strong,.gem-skill strong{overflow-wrap:anywhere}
+.gem-summary{flex-wrap:wrap}
+@media(max-width:640px){.priority-cards{grid-template-columns:1fr}.skill-title{flex-wrap:wrap}.skill-title>div{flex:1}.skill-title code{margin-left:0}.gem-row{grid-template-columns:24px minmax(0,1fr) 82px}.gem-skill{min-width:0}.gem-skill strong{min-width:0}}
 .guide-header{
   padding-bottom:35px;
   border-bottom:1px solid var(--line);
@@ -532,4 +544,25 @@
   .rune-grid > div{
     flex-wrap: wrap;
   }
+}
+
+/* Rune presets reuse the single-setup rarity legend and grid. */
+#runes .section-heading { flex-wrap: wrap; }
+.rune-preset-controls { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+.rune-preset-controls button { background: var(--surface); border: 1px solid var(--line); color: var(--muted); font-size: 12px; padding: 8px 12px; transition: background .15s, border-color .15s; }
+.rune-preset-controls button:hover { border-color: var(--accent); color: var(--text); }
+.rune-preset-controls button[aria-pressed="true"] { background: #30243f; border-color: var(--accent); color: #e3d5ff; }
+.rune-preset-controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.preset-rune-list .rune-skill { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.preset-rune-list .rune { white-space: nowrap; flex-shrink: 0; }
+.preset-rune-list > div { flex-wrap: wrap; }
+.rune-preset-note, .rune-popularity { font-size: 12px; }
+.rune-popularity { margin-top: 16px; color: var(--muted); }
+.rune-popularity summary { cursor: pointer; color: var(--accent); }
+.rune-popularity li { margin-top: 10px; }
+.rune-popularity p { margin: 3px 0; }
+@media (min-width: 901px) { .preset-rune-list { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 640px) {
+  .rune-preset-controls { width: 100%; margin-left: 0; }
+  .rune-preset-controls button { flex: 1; padding: 8px; font-size: 11px; }
 }

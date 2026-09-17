@@ -37,6 +37,16 @@
     "slayer": "assets/images/classes/slayer.svg",
     "valkyrie": "assets/images/classes/valkyrie.svg",
     "wildsoul": "assets/images/classes/wildsoul.svg",
-    "guardianknight": "assets/images/classes/guardianknight.svg"
+    "guardianknight": "assets/images/classes/guardianknight.svg",
+    "dimensionalist": "assets/images/classes/dimensionalist.svg"
+  },
+  "overrides": {
+    "dimensionalist": {
+      "source": "https://www.inven.co.kr/board/lostark/6271/3905703",
+      "assetSource": "https://upload3.inven.co.kr/upload/2026/07/16/bbs/svg.zip",
+      "archiveEntry": "svg/dimension_master.svg",
+      "note": "Community collection claiming extraction from the official Korean site; direct official origin not independently confirmed. Original paths/viewBox preserved; white fill changed to #ede8d9 to match Reaper.",
+      "reviewed": "2026-09-17"
+    }
   }
 }
