@@ -1,6 +1,6 @@
 # Lost Ark Build Archive
 
-Site pessoal de guias de builds de Lost Ark para consulta durante o jogo. Guias disponíveis: **Reaper — Lunar Voice 222 Blink** e **Dimensionalist — Time Wilder 222 Spec/Crit**, ambos Post-Patch Ark Grid Build.
+Site pessoal de guias de builds de Lost Ark para consulta durante o jogo. Guias disponíveis: **Reaper — Lunar Voice 222 Blink**, **Dimensionalist — Time Wilder 222 Spec/Crit** e **Shadowhunter — Demonic Impulse / Ominous 332**, todos Post-Patch Ark Grid Build.
 
 HTML, CSS e JavaScript ES Modules, sem backend, pacotes de produção ou etapa de build. A Home é gerada pelo catálogo de guias, e o mesmo renderer atende todas as builds.
 
@@ -25,6 +25,7 @@ data/
   registry.js               Catálogo de builds
   reaper-lunar-222.js        Conteúdo técnico da Reaper
   dimensionalist-time-wilder-222.js  Conteúdo técnico da Dimensionalist
+  shadowhunter-demonic-impulse-332.js  Conteúdo técnico da Shadowhunter
 js/
   app.js                    Home, roteamento e interações
   guide-renderer.js         Composição das seções do guia
@@ -137,3 +138,17 @@ Os componentes de `js/components/guide-panels.js` ampliam o renderer existente:
 Os oito ícones da Dimensionalist foram extraídos da captura fornecida pelo usuário e associados por `skills[].icon` a `assets/images/skills/dimensionalist/<id>.png`. As letras de atalho presentes na captura foram preservadas. O emblema da classe está em `assets/images/classes/dimensionalist.svg`, registrado em `data/class-icons.js`, com a origem comunitária documentada em `assets/images/classes/sources.json`.
 
 A revisão de 17/09/2026 preserva o briefing: Cycle-Optimized (01/08) como principal e Bible Popular / Conviction-Judgment como alternativa. As limitações de validação e as fontes estão em `VALIDATION.md` e na seção Sources do guia.
+
+## Shadowhunter — Demonic Impulse / Ominous 332
+
+Rota: `?guide=shadowhunter-demonic-impulse-332`. Cadastro no mesmo registry, Home automática e renderer compartilhado. O guia contém somente o setup fornecido, com oito skills humanas e onze habilidades demoníacas, incluindo T/V; 5 Damage + 6 Cooldown Gems; Ark Passive; geração de meter; DFXAX; opener, fillers, recovery, synergy e prioridades.
+
+Extensões opcionais do schema, sem dados técnicos herdados das outras classes:
+
+- `demonSkills` usa o mesmo `skillCard` e alimenta runas, gems, prioridades e referências. `key` identifica o atalho; tripods vazios e runas ausentes não geram elementos fictícios.
+- `arkPassive: [{ title, tiers: [[tier, value]], note? }]` reutiliza panels e tokens existentes. Navegação e números das seções são derivados de `getSections(guide)`.
+- `rotation.type: 'sequence-cycle'` reutiliza `infoPanel`, com `id`, `shortcut`, `flow`, `secondaryFlow`, `paragraphs` e `emphasis`. O destaque DFXAX também aparece em `overview.panels`.
+- `skillImport`, `stats.pet` e listas de Chaos Cores podem estar ausentes/vazias, sem conteúdo inventado. `gems.cooldownRankLabel` distingue slots de prioridades quando apenas alguns upgrades são destacados.
+- `overview.title`, `arkGrid.title`, `damageTitle`, `demonSkillSetupNote` e `runeNote` mantêm o conteúdo nos dados.
+
+O emblema Shadowhunter e as categorias Order Sun/Moon/Star já existem e são reutilizados. 18 ícones de skills foram extraídos das capturas fornecidas; apenas Blood Demonic Clone (X) aguarda imagem. Origem e convenção documentadas em `assets/images/skills/shadowhunter/README.md`; o fallback são iniciais, sem requisições 404. Não foi fornecido código de importação. Mecânicas preservadas do briefing, sem alegação de revalidação independente.

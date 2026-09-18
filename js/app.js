@@ -19,7 +19,7 @@ if (id && !guide) {
 } else if (guide) {
   document.title = `${guide.class} — ${guide.build} ${guide.variant} | ${site.name}`;
   main.innerHTML = renderGuide(guide);
-  decorateSkillReferences(main, guide.skills);
+  decorateSkillReferences(main, [...guide.skills, ...(guide.demonSkills || [])]);
   bindRunePresets(main);
   document.querySelector('#expand-loop')?.addEventListener('click', (event) => {
     const button = event.currentTarget;

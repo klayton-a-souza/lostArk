@@ -1,5 +1,93 @@
 # Verificação da entrega — 2026-09-17
 
+## Ícones da Shadowhunter — capturas fornecidas
+
+- Extraídos 18 PNGs de 44 × 44 px: oito skills humanas, oito demoníacas e Blood Marsh/Fallen Ruin. Arte e rótulos de teclas preservados das capturas, sem gerar imagens ou alterar os atalhos da build. Origem documentada em `assets/images/skills/shadowhunter/README.md`.
+- Somente Blood Demonic Clone (X) não aparece nas capturas e permanece sem ícone. Nenhuma skill extra da terceira captura foi cadastrada.
+- Dados apontam para `assets/images/skills/shadowhunter/<id>.png`; os componentes existentes aplicam as imagens aos cards, gems, runas e menções textuais.
+- Ajustado `decorateSkillReferences` para reconhecer nomes completos mesmo quando não há imagem: Blood Demonic Clone não herda o ícone da skill humana Demonic Clone. Títulos de Cores preservam apenas o ícone de categoria.
+- 19 testes existentes aprovados. Edge/Playwright em 1440, 768, 390 e 320px: 18 imagens com dimensões e alt corretos, fallback de X preservado, sem overflow e sem erros JavaScript/console/HTTP. Caso de nomes sobrepostos verificado no DOM. Capturas desktop/mobile inspecionadas.
+- Scripts/capturas de QA em `test-results/`, já ignorado pelo Git. Sem publicação remota.
+
+## Complemento Ark Grid — Shadowhunter / Ominous 332
+
+- Alteração restrita ao conteúdo/renderização de Ark Grid. Dados externos a `arkGrid` e HTML das demais seções da Shadowhunter comparados por SHA-256 antes/depois: idênticos. HTML completo e dados das outras duas classes também permaneceram idênticos.
+- Cards existentes `arkCoreCard` ampliados com `position` e detalhes opcionais nos breakpoints: `label`, `tone`, `note`, `flow` e `rarities`. Cards antigos preservam exatamente seu markup anterior. Não foi criado componente independente.
+- `infoPanel`, `flow`, `badge`, `summary-card` e os ícones de categoria foram reaproveitados. `infoPanel.chains` permite mostrar os passos de sinergia com nomes completos e teclas. Sem sistema novo de tooltip; explicações textuais no próprio contexto.
+- Ominous Sun 3, Demonic Clone Moon 3 e Critical Claws Star 2: 10P, 14P, 17P e 18–20P detalhados conforme o complemento fornecido. 17P mostra Relic/Ancient explicitamente: +5%/+6%, +18%/+20% e +9%/+14%. Casting Speed de Blood Demonic Clone +20% em ambas as raridades. Scaling +0.2% em cada um dos pontos 18/19/20.
+- “Why 332 Works” conecta Demonize, Destiny, Destiny: Ominous, Chaos Sliver ×2, Frenzied Chaos e os dois X. Comparação visual Gameplay / Power Spike / Scaling, com distinção de que Critical Claws 14P é um ganho de dano. Prioridades Relic/Ancient e loop DFXAX preservados.
+- `node --test`: 19 testes aprovados, incluindo efeitos/valores, pares de raridade, escape e compatibilidade dos cards anteriores.
+- Edge/Playwright em 1440, 1024, 768, 390 e 320px: sem overflow da página ou dos cards/breakpoints/fluxos; sem erros JavaScript, console ou HTTP. Doze blocos de breakpoint, seis valores Relic/Ancient e teclas DFXAX conferidos no DOM. Navegação por teclado até Ark Grid validada.
+- Capturas de desktop/mobile inspecionadas. Cards empilham em tablet/mobile; comparações de raridade continuam lado a lado; fluxos quebram linha. Estilos adicionais limitados aos novos detalhes.
+
+Arquivos alterados neste complemento: `data/shadowhunter-demonic-impulse-332.js`, `js/components/ui.js`, `js/components/guide-panels.js`, `js/guide-renderer.js`, `css/components.css`, `tests/shadowhunter.test.js` e `VALIDATION.md`.
+
+Artefatos locais de QA (ignorados pelo Git): `test-results/shadowhunter-cores-check.mjs` e capturas `test-results/cores-<largura>-<bloco>.png`, nas cinco larguras acima, para os cards 0/1/2, interaction e progression. Sem publicação remota; os efeitos seguem o conteúdo fornecido, sem alegação de validação independente do jogo.
+
+## Shadowhunter — Demonic Impulse / Ominous 332
+
+- Guia integrado à Home e ao renderer existente em `?guide=shadowhunter-demonic-impulse-332`.
+- `node --test`: 17 testes aprovados. Incluem regressões de Reaper/Dimensionalist, registro/âncoras, referências das gems, setup humano, teclas demoníacas, runas/raridades, Cores, engravings e sequência DFXAX.
+- Edge headless / Playwright, servidor local `node scripts/serve.js`: três guias testados em 1440, 768, 390 e 320 px. Nenhum overflow horizontal da página, erro JavaScript/console ou resposta HTTP >=400. Assets existentes carregados; ícones pendentes não geram requisições.
+- Home com três cards; entrada na Shadowhunter por teclado (Enter), âncoras internas válidas e rota desconhecida com retorno ao catálogo.
+- Shadowhunter: 8 cards humanos, 11 demoníacos, 8 runas fixas, 11 gems, 3 Order Cores e 13 seções principais. D → F → X → A → X conferido no DOM. Ark Passive e painéis de rotação reutilizam o tema e os componentes existentes.
+- Reaper: Expanded/Compact continua mostrando/recolhendo os nove passos. Dimensionalist: seletor Bible Popular continua ativando seu painel e par de runas.
+- Capturas desktop/mobile inspecionadas. Fluxos usam wrap; raridades têm rótulos textuais, teclas têm badges e os ícones têm alt, acompanhados pelos nomes visíveis.
+- `git diff --check`: sem erros. Arquivos de dados das classes anteriores não foram alterados. Sem commit, push ou publicação remota.
+
+### Limitações e decisões
+
+- Os 19 ícones reais das skills não estão disponíveis no repositório. Fallback de iniciais do componente existente; pasta e instruções criadas para inserção posterior. Emblema Shadowhunter e categorias Ark Grid reutilizados.
+- Conteúdo técnico segue o briefing fornecido, sem revalidação independente. Rising Claw usa a opção fornecida Naively Honest. Não foram inventados pontos de Core, código de importação, pet, runas ausentes ou percentuais de DPS.
+- O schema anterior não tinha Ark Passive nem uma segunda lista de habilidades por forma. Foram acrescentados campos opcionais e suporte no renderer compartilhado, sem duplicar páginas ou alterar as rotas existentes. A ordem geral da Reaper foi preservada.
+- `skillImport` e `stats.pet` tornaram-se opcionais; Chaos Cores vazios não exibem seção. `sequence-cycle` reutiliza os painéis/fluxos existentes; gems, runas e prioridades resolvem também `demonSkills`. Cooldown Gems mostra slots e destaca somente as duas prioridades fornecidas.
+- A consulta ao site publicado não ficou acessível pela ferramenta web. A integração e a validação usaram os arquivos do projeto local.
+
+### Inventário desta implementação
+
+Criados (código/documentação):
+
+- `data/shadowhunter-demonic-impulse-332.js`
+- `tests/shadowhunter.test.js`
+- `assets/images/skills/shadowhunter/README.md`
+
+Modificados:
+
+- `data/registry.js`
+- `js/app.js`
+- `js/guide-renderer.js`
+- `js/components/ui.js`
+- `js/components/guide-panels.js`
+- `js/components/runes.js`
+- `css/guide.css`
+- `tests/guide.test.js`
+- `README.md`
+- `VALIDATION.md`
+
+Artefatos locais de verificação criados em `test-results/` (pasta já ignorada pelo Git):
+
+- `shadowhunter-check.mjs`
+- `shadowhunter-1440-ark-grid.png`
+- `shadowhunter-1440-ark-passive.png`
+- `shadowhunter-1440-core-loop.png`
+- `shadowhunter-1440-demon-skills.png`
+- `shadowhunter-1440-gems.png`
+- `shadowhunter-1440-opener.png`
+- `shadowhunter-1440-overview.png`
+- `shadowhunter-1440-recovery.png`
+- `shadowhunter-1440-runes.png`
+- `shadowhunter-1440-skills.png`
+- `shadowhunter-390-ark-grid.png`
+- `shadowhunter-390-ark-passive.png`
+- `shadowhunter-390-core-loop.png`
+- `shadowhunter-390-demon-skills.png`
+- `shadowhunter-390-gems.png`
+- `shadowhunter-390-opener.png`
+- `shadowhunter-390-overview.png`
+- `shadowhunter-390-recovery.png`
+- `shadowhunter-390-runes.png`
+- `shadowhunter-390-skills.png`
+
 ## Emblemas das classes
 
 - 35 SVGs extraídos do catálogo oficial de classes, com origem registrada em `assets/images/classes/sources.json`.

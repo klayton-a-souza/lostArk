@@ -4,20 +4,21 @@ import { readFile } from 'node:fs/promises';
 import guide from '../data/reaper-lunar-222.js';
 import dimensionalist from '../data/dimensionalist-time-wilder-222.js';
 import { guides, getGuide } from '../data/registry.js';
-import { renderGuide, sections } from '../js/guide-renderer.js';
+import { renderGuide, getSections } from '../js/guide-renderer.js';
 import { defaultRunePreset, runesSection, bindRunePresets } from '../js/components/runes.js';
 import { escape, skillCard } from '../js/components/ui.js';
 
 test('every registered guide renders with valid internal section and skill references', () => {
-  assert.equal(guides.length, 2);
+  assert.equal(guides.length, 3);
   assert.equal(new Set(guides.map((item) => item.id)).size, guides.length);
   for (const item of guides) {
     assert.equal(getGuide(item.id), item);
     const html = renderGuide(item);
     assert.ok(!html.includes('undefined'));
-    for (const [id] of sections) assert.ok(html.includes(`id="${id}"`));
-    const ids = new Set(item.skills.map((skill) => skill.id));
-    assert.equal(ids.size, item.skills.length);
+    for (const [id] of getSections(item)) assert.ok(html.includes(`id="${id}"`));
+    const allSkills = [...item.skills, ...(item.demonSkills || [])];
+    const ids = new Set(allSkills.map((skill) => skill.id));
+    assert.equal(ids.size, allSkills.length);
     const targets = new Set([...ids, ...Object.keys(item.gemTargets || {})]);
     for (const id of [...item.gems.damage, ...item.gems.cooldown, ...(item.damagePriority || []).flatMap((group) => group.skills)]) assert.ok(targets.has(id), id);
     for (const id of [...(item.rotation.swoops || []), ...(item.rotation.blocks || []).flatMap((block) => block.skills), ...(item.skillSnapshot?.entries || []).map((entry) => entry.skill), ...(item.runePresets || []).flatMap((preset) => preset.assignments.map((entry) => entry.skill))]) assert.ok(ids.has(id), id);

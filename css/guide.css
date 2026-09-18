@@ -6,6 +6,16 @@
   padding:0 4%;
   gap:55px
 }
+.passive-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.passive-tiers { margin-bottom: 0; }
+.passive-tiers > div { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.passive-tiers dt { font-size: 11px; color: var(--accent); }
+.passive-tiers dd { margin: 4px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+.passive-grid p { font-size: 13px; }
+.core-loop-panel { border-color: var(--accent); }
+.key-flow .flow-step { font: 600 22px var(--mono); color: var(--accent); }
+.detail-panel[id] { scroll-margin-top: 85px; }
+@media (max-width: 1200px) { .passive-grid { grid-template-columns: 1fr; } }
 .sidebar{
   position:sticky;
   top:20px;
