@@ -46,7 +46,7 @@ test('missing optional human runes, demon tripods and import codes render withou
   const clone = skillCard(guide.demonSkills.find(s => s.key === 'X'));
   assert.match(clone, /Key X/);
   assert.match(clone, /Sem runa/);
-  assert.doesNotMatch(clone, /class="tripods"|class="skill-rune"|Lv\d|src=/);
+  assert.doesNotMatch(clone, /class="tripods"|class="skill-rune"|Lv\d/);
 });
 
 test('Ark Grid details preserve 332 positions and the supplied 17P rarity differences', () => {

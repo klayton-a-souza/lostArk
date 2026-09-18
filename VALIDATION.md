@@ -2,7 +2,7 @@
 
 ## Ícones da Shadowhunter — capturas fornecidas
 
-- Extraídos 18 PNGs de 44 × 44 px: oito skills humanas, oito demoníacas e Blood Marsh/Fallen Ruin. Arte e rótulos de teclas preservados das capturas, sem gerar imagens ou alterar os atalhos da build. Origem documentada em `assets/images/skills/shadowhunter/README.md`.
+- Extraídos 19 PNGs de 44 × 44 px: oito skills humanas, oito demoníacas, Blood Marsh, Fallen Ruin e Blood Demonic Clone (X). Arte e rótulos de teclas preservados das capturas, sem gerar imagens ou alterar os atalhos da build. Origem documentada em `assets/images/skills/shadowhunter/README.md`.
 - Somente Blood Demonic Clone (X) não aparece nas capturas e permanece sem ícone. Nenhuma skill extra da terceira captura foi cadastrada.
 - Dados apontam para `assets/images/skills/shadowhunter/<id>.png`; os componentes existentes aplicam as imagens aos cards, gems, runas e menções textuais.
 - Ajustado `decorateSkillReferences` para reconhecer nomes completos mesmo quando não há imagem: Blood Demonic Clone não herda o ícone da skill humana Demonic Clone. Títulos de Cores preservam apenas o ícone de categoria.

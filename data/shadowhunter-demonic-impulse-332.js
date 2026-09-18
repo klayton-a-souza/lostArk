@@ -1,5 +1,5 @@
 // Conteúdo editorial fornecido pelo usuário. Sem estatísticas ou efeitos adicionais inferidos.
-const skillIcon = (id) => id === 'blood-demonic-clone' ? undefined : `assets/images/skills/shadowhunter/${id}.png`;
+const skillIcon = (id) => `assets/images/skills/shadowhunter/${id}.png`;
 const human = (id, name, level, tripods, code, extra = {}) => ({ id, name, level, tripods, code, role: 'Human Form', icon: skillIcon(id), ...extra });
 const demon = (id, name, key, rune, rarity, note = '') => ({ id, name, key, tripods: [], role: 'Demon Form', rune, rarity, note, icon: skillIcon(id) });
 const skills = [
