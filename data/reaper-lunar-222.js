@@ -37,7 +37,7 @@ export default {
     skill('spinning-dagger', 'Spinning Dagger', ['Poison: Bleed', 'Enhanced Spinning', 'Shadow Afterimage'], '2-1-1', 'Wealth', 'Rare', 'Persona Generation'),
     skill('silent-rage', 'Silent Rage', ['Light Move', 'Shadow Afterimage', 'Ground Smash'], '2-3-1', 'Galewind', 'Legendary', 'MAIN DAMAGE'),
   ],
-  skillImport: { code: '59A734B6D8D2971410217AA603A89E913093F3F3D0A502754AF0471EC5B78D43A09BD1FCF2511438A099D768B4F9330B6F0D592DD7C85B4391797F54AF3596FC', note: 'Ark Grid specific skill code', updated: '2026-09-17' },
+  skillImport: { code: '5FA846EB1A578396D83022DF48B9E09421D5EDA5AFAE6280CAE656A7F6B68815E5C92FDFE9F523D57DE1886601E52C15D17A78F6CAA5C212B46D1DDE7CB69CAD', note: 'Ark Grid specific skill code', updated: '2026-09-19' },
   gems: {
     description: 'A Lunar 222 Blink utiliza 10 efeitos de gems realmente importantes. O 11º slot pode funcionar como filler para aproveitar o bônus passivo da gema.',
     damage: ['glowing-brand', 'silent-rage'],
