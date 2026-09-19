@@ -4,7 +4,7 @@ export const defaultRunePreset = (guide) => guide.runePresets?.find((preset) => 
 const legend = () => `<div class="rune-legend">${['Legendary', 'Epic', 'Rare', 'Uncommon'].map((rarity) => runeBadge('Rune', rarity)).join('')}</div>`;
 
 function presetPanel(preset, guide) {
-  return `<p class="section-description">${escape(preset.shortDescription || preset.note)}</p>${legend()}<div class="rune-grid preset-rune-list">${preset.assignments.map((entry) => {
+  return `<p class="section-description">${escape(preset.shortDescription || preset.note)}</p>${preset.assignments.some(entry => entry.rarity) ? legend() : ''}<div class="rune-grid preset-rune-list">${preset.assignments.map((entry) => {
     const skill = guide.skills.find((skill) => skill.id === entry.skill);
     return `<div data-rune-skill="${escape(entry.skill)}"><strong class="rune-skill">${asset(skill, 'small')}<span>${escape(skill.name)}</span></strong>${runeBadge(entry.rune, entry.rarity)}</div>`;
   }).join('')}</div>${preset.pairNote ? `<p class="notice rune-pair">${escape(preset.pairNote)}</p>` : ''}${preset.shortDescription && preset.note ? `<p class="muted rune-preset-note">${escape(preset.note)}</p>` : ''}${preset.assignments.some((entry) => entry.popularity !== undefined || entry.alternativeNote) ? `<details class="rune-popularity"><summary>Frequências e alternativas · Bible snapshot</summary><ul>${preset.assignments.map((entry) => `<li><strong>${escape(guide.skills.find((skill) => skill.id === entry.skill).name)}</strong> — ${escape(entry.rune)} ${escape(entry.rarity)}${entry.popularity !== undefined ? ` · ${Number(entry.popularity).toFixed(2)}%` : ''}${entry.alternativeNote ? `<p>${escape(entry.alternativeNote)}</p>` : ''}</li>`).join('')}</ul></details>` : ''}`;

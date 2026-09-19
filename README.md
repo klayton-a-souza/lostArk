@@ -1,6 +1,6 @@
 # Lost Ark Build Archive
 
-Site pessoal de guias de builds de Lost Ark para consulta durante o jogo. Guias disponíveis: **Reaper — Lunar Voice 222 Blink**, **Dimensionalist — Time Wilder 222 Spec/Crit** e **Shadowhunter — Demonic Impulse / Ominous 332**, todos Post-Patch Ark Grid Build.
+Site pessoal de guias de builds de Lost Ark para consulta durante o jogo. Guias disponíveis: **Reaper — Lunar Voice 222 Blink**, **Dimensionalist — Time Wilder 222 Spec/Crit**, **Shadowhunter — Demonic Impulse / Ominous 332** e **Valkyrie — Shining Knight 111 Standard**, todos no contexto pós-Ark Grid.
 
 HTML, CSS e JavaScript ES Modules, sem backend, pacotes de produção ou etapa de build. A Home é gerada pelo catálogo de guias, e o mesmo renderer atende todas as builds.
 
@@ -53,6 +53,16 @@ Componentes: `guideHeader`, `buildOverview`, `arkCoreCard`, `skillCard`, `runeBa
 As rotas usam `?guide=reaper-lunar-222-blink`, com âncoras como `#rotation`. Links relativos permitem hospedar em `/lostArk/` sem rewrite nem cópias de HTML por personagem. Um ID inexistente mostra uma página com retorno ao catálogo.
 
 ## Adding a new guide
+
+### Valkyrie — Shining Knight 111 Standard
+
+Rota: `?guide=valkyrie-shining-knight-111`. Dados em `data/valkyrie-shining-knight-111.js`. Final Words + Knight of Finality + True End; Trinity 3 / Last Light 2; oito skills e 4 Damage + 7 Cooldown Gems, sem gem para Foresight Slash. O conteúdo segue integralmente o briefing fornecido, sem revalidação externa.
+
+Extensões opcionais do renderer: `skillBar`, `skills[].gemNote`, `arkPassivePanels`, `rotationTitle`, `utility` e `engravingGroups`. Gems aceitam `damageRanks`, `cooldownRanks`, `damagePriorities` e `emphasis` para prioridades por grupo sem níveis. Os guias anteriores mantêm os padrões existentes. A legenda de raridades de um preset só aparece quando suas assignments informam raridade.
+
+Assets reutilizados: emblema `assets/images/classes/valkyrie.svg` e categorias `assets/images/ark-grid/order-{sun,moon,star}.png`. Faltam imagens das oito skills e de Final Splendor; usam iniciais do componente `asset`, sem URLs inexistentes. Shining Knight, Awakenings e Cataclysm aparecem em painéis textuais. Runas, engravings e Ark Passive usam os mesmos badges/painéis do projeto, sem imagens adicionais. Nenhum asset foi duplicado. Raridades de runas, códigos numéricos de tripods, import code e fontes externas não foram fornecidos e não foram inventados.
+
+Validação de 19/09/2026: `node --test` passou os 21 testes; `git diff --check` sem erros. Servidor local iniciado; Home com quatro guias, rota da Valkyrie, âncoras e console verificados. Layout inspecionado em desktop (1440), tablet (768) e mobile (390), sem overflow horizontal da página. O projeto não possui etapa de build nem dependências de produção. Testes específicos em `tests/valkyrie.test.js` conferem skills/tripods/runas, cores, identidades Global e as 11 gems sem níveis.
 
 1. Crie um arquivo em `data/`, usando o schema completo da Reaper como modelo.
 2. Preencha o conteúdo da nova classe/build com dados documentados. Cada skill deve ter `id` exclusivo dentro da build, nome, tripods, código, rune, rarity, role e caminho opcional de ícone. Gems e blocos referenciam os IDs das skills.

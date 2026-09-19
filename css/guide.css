@@ -6,6 +6,10 @@
   padding:0 4%;
   gap:55px
 }
+.skill-bar { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 24px 0; list-style: none; }
+.skill-bar li { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; text-align: center; font-size: 12px; overflow-wrap: anywhere; min-width: 0; }
+@media (max-width: 1200px) { .skill-bar { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .skill-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .passive-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .passive-tiers { margin-bottom: 0; }
 .passive-tiers > div { padding: 12px 0; border-bottom: 1px solid var(--line); }

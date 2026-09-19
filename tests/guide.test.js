@@ -9,7 +9,7 @@ import { defaultRunePreset, runesSection, bindRunePresets } from '../js/componen
 import { escape, skillCard } from '../js/components/ui.js';
 
 test('every registered guide renders with valid internal section and skill references', () => {
-  assert.equal(guides.length, 3);
+  assert.equal(guides.length, 4);
   assert.equal(new Set(guides.map((item) => item.id)).size, guides.length);
   for (const item of guides) {
     assert.equal(getGuide(item.id), item);

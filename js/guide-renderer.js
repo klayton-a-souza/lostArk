@@ -6,9 +6,10 @@ import { runesSection } from './components/runes.js';
 export const sections = [['overview', 'Overview'], ['ark-grid', 'Ark Grid'], ['stats', 'Combat Stats'], ['skills', 'Skills'], ['runes', 'Runes'], ['gems', 'Gems'], ['rotation', 'Rotation'], ['recovery', 'Recovery'], ['engravings', 'Engravings'], ['dps', 'DPS Spread'], ['sources', 'Sources']];
 
 export const getSections = (guide) => sections.flatMap(([id, label]) => {
-  const entry = [id, id === 'dps' ? (guide.damageTitle || label) : label];
+  const entry = [id, id === 'dps' ? (guide.damageTitle || label) : id === 'rotation' ? (guide.rotationTitle || label) : label];
   if (id === 'stats' && guide.arkPassive) return [entry, ['ark-passive', 'Ark Passive']];
   if (id === 'skills' && guide.demonSkills) return [entry, ['demon-skills', 'Demon Skills']];
+  if (id === 'engravings' && guide.utility) return [entry, ['utility', 'Utility / Awakenings']];
   return [entry];
 });
 
@@ -21,14 +22,15 @@ export function renderGuide(guide) {
   ${section('overview', '01', guide.overview.title || 'Build Overview', '', buildOverview(guide) + (guide.overview.panels || []).map(infoPanel).join(''))}
   ${section('ark-grid', '02', ark.title || 'Ark Grid', 'Os cores que sustentam o ciclo.', `<h3 class="group-label order-label">☼ Order Cores</h3><div class="core-grid${ark.order.some(core => core.position !== undefined) ? ' core-grid-detailed' : ''}">${ark.order.map((core) => arkCoreCard(core, 'order', guide.sources)).join('')}</div>${(ark.panels || []).map(infoPanel).join('')}${ark.progression ? `<h3>14P vs 17P · Gameplay e poder</h3><div class="overview-grid core-progression">${ark.progression.map((item) => `<div class="summary-card"><span class="micro">${escape(item.label)}</span><strong>${escape(item.value)}</strong><p>${escape(item.text)}</p></div>`).join('')}</div>` : ''}${ark.rarityNote ? `<p class="notice">${escape(ark.rarityNote)}</p>` : ''}<aside class="minimum"><span class="micro">${escape(ark.minimumLabel || 'Minimum functional breakpoint')}</span><strong>${escape(ark.minimum)}</strong><p>${escape(ark.minimumNote)}</p></aside><div class="priority-grid">${Object.entries(ark.priorities || {}).map(([rarity, items]) => `<div class="panel"><h4>${escape(rarity)} · Order Core Priority</h4><ol class="priority-list">${items.map((item) => `<li>${escape(item)}</li>`).join('')}</ol></div>`).join('')}</div><p class="muted">${escape(ark.priorityNote)}</p>${ark.popularityNote ? `<p class="notice">${escape(ark.popularityNote)}</p>` : ''}${ark.chaos.length ? `<h3 class="group-label chaos-label">✧ Chaos Cores</h3><div class="core-grid">${ark.chaos.map((core) => arkCoreCard(core, 'chaos', guide.sources)).join('')}</div>` : ''}`)}
   ${section('stats', '03', 'Combat Stats', '', combatStats(guide.stats))}
-  ${guide.arkPassive ? section('ark-passive', '', 'Ark Passive', '', arkPassivePanel(guide.arkPassive)) : ''}
-  ${section('skills', '04', 'Skill Setup', `${guide.skills.length} skills · Tripods, runas e função no ciclo.`, `${guide.skillSetupLabel ? `<h3>${escape(guide.skillSetupLabel)}</h3><p>${escape(guide.skillSetupNote)}</p>` : ''}<div class="skill-grid">${guide.skills.map(skillCard).join('')}</div>${importCodes(guide.skillImport)}${skillSnapshot(guide.skillSnapshot, guide.skills)}`)}
+  ${guide.arkPassive ? section('ark-passive', '', 'Ark Passive', '', arkPassivePanel(guide.arkPassive) + (guide.arkPassivePanels || []).map(infoPanel).join('')) : ''}
+  ${section('skills', '04', 'Skill Setup', `${guide.skills.length} skills · Tripods, runas e função no ciclo.`, `${guide.skillSetupLabel ? `<h3>${escape(guide.skillSetupLabel)}</h3><p>${escape(guide.skillSetupNote)}</p>` : ''}${guide.skillBar ? `<ul class="skill-bar" aria-label="Skills da Standard">${guide.skills.map(skill => `<li>${asset(skill, 'small')}<span>${escape(skill.name)}</span></li>`).join('')}</ul>` : ''}<div class="skill-grid">${guide.skills.map(skillCard).join('')}</div>${importCodes(guide.skillImport)}${skillSnapshot(guide.skillSnapshot, guide.skills)}`)}
   ${guide.demonSkills ? section('demon-skills', '', 'Demon Form Skills', guide.demonSkillSetupNote || 'Habilidades da forma transformada e suas teclas.', `<div class="skill-grid">${guide.demonSkills.map(skillCard).join('')}</div>`) : ''}
   ${runesSection(guide, number('runes'))}
   ${section('gems', '06', 'Gems', guide.gems.description, gemsPanel(guide))}
-  ${section('rotation', '07', 'Rotation', guide.rotation.description || 'Aprenda os blocos. Leia os cooldowns. Mantenha a Persona fluindo.', rotationPanel(guide))}
+  ${section('rotation', '07', guide.rotationTitle || 'Rotation', guide.rotation.description || 'Aprenda os blocos. Leia os cooldowns. Mantenha a Persona fluindo.', rotationPanel(guide))}
   ${section('recovery', '08', 'Recovery / When Rotation Breaks', 'Entenda o que está disponível e escolha a próxima ação.', `<div class="recovery-grid">${guide.recovery.map(recoveryCard).join('')}</div>`)}
-  ${section('engravings', '09', 'Engravings', guide.engravingNote, engravingList(guide.engravings) + (guide.engravingAlternatives ? `<p class="notice">${escape(guide.engravingAlternatives)}</p>` : ''))}
+  ${section('engravings', '09', 'Engravings', guide.engravingNote, (guide.engravingGroups ? guide.engravingGroups.map(group => `<h3>${escape(group.title)}</h3>${engravingList(group.items)}`).join('') : engravingList(guide.engravings)) + (guide.engravingAlternatives ? `<p class="notice">${escape(guide.engravingAlternatives)}</p>` : ''))}
+  ${guide.utility ? section('utility', '', 'Utility / Awakenings', '', guide.utility.map(infoPanel).join('')) : ''}
   ${section('dps', '10', guide.damageTitle || 'DPS Spread', '', damagePanel(guide))}
   ${section('sources', '11', 'Sources / References', `Last guide review: ${guide.reviewLabel}`, `<p class="verification">${escape(guide.verification)}</p>${guide.sources.map(sourceReference).join('')}`)}
   <a class="back-top" href="#main">Voltar ao início ↑</a></div></div>`;
