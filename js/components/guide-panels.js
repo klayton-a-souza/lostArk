@@ -10,11 +10,14 @@ export function combatStats(stats) {
 }
 export function importCodes(imports) {
   if (!imports) return '';
-  return [imports, ...(imports.alternatives || [])].map((item, i) => {
+  const presets = [imports, ...(imports.alternatives || [])];
+  const label = (item, i) => item.name || (i ? 'Alternative' + (presets.length > 2 ? ' ' + i : '') : 'Main');
+  const tabs = presets.length > 1 ? `<div class="import-tabs" role="tablist" aria-label="Skill presets">${presets.map((item, i) => `<button type="button" role="tab" id="import-tab-${i}" aria-controls="import-preset-${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${escape(label(item, i))}</button>`).join('')}</div>` : '';
+  return `<div class="panel import-panel"><h3>Skill Import Code</h3>${tabs}` + presets.map((item, i) => {
     const id = i ? `skill-code-${i}` : 'skill-code';
     const status = i ? `copy-status-${i}` : 'copy-status';
-    return `<div class="panel import-panel"><div class="panel-heading"><div><h3>${i ? 'Alternative Skill Import Code' : 'Skill Import Code'}</h3><p>${escape(item.note)} · Updated: ${escape(item.updated)}</p></div><button ${i ? '' : 'id="copy-code"'} data-copy-code="${id}" data-copy-status="${status}">Copy Code <span aria-hidden="true">⧉</span></button></div><code id="${id}" tabindex="0">${escape(item.code)}</code><span id="${status}" class="copy-status" role="status" aria-live="polite"></span></div>`;
-  }).join('');
+    return `<div class="import-preset" id="import-preset-${i}" ${presets.length > 1 ? `role="tabpanel" aria-labelledby="import-tab-${i}" tabindex="0"` : ''} ${i ? 'hidden' : ''}><div class="panel-heading"><div><h4>${escape(label(item, i))}</h4><p>${escape(item.note || '')}${item.updated ? ` · Updated: ${escape(item.updated)}` : ''}</p></div><button type="button" ${i ? '' : 'id="copy-code"'} data-copy-code="${id}" data-copy-status="${status}">Copiar código <span aria-hidden="true">⧉</span></button></div><code class="import-preview" aria-label="Prévia abreviada do código">${escape(item.code.slice(0, 8))}…${escape(item.code.slice(-8))}</code><details class="import-code-disclosure"><summary><span>Ver código completo</span><span class="disclosure-icon" aria-hidden="true">⌄</span></summary><code id="${id}" tabindex="0">${escape(item.code)}</code></details><span id="${status}" class="copy-status" role="status" aria-live="polite"></span></div>`;
+  }).join('') + '</div>';
 }
 export function skillSnapshot(snapshot, skills) {
   if (!snapshot) return '';

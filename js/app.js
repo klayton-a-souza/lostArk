@@ -5,6 +5,7 @@ import { renderGuide } from './guide-renderer.js';
 import { decorateSkillReferences } from './components/skill-references.js';
 
 import { bindRunePresets } from './components/runes.js';
+import { bindImportTabs } from './components/import-tabs.js';
 
 const main = document.querySelector('main');
 const id = new URLSearchParams(location.search).get('guide');
@@ -21,6 +22,7 @@ if (id && !guide) {
   main.innerHTML = renderGuide(guide);
   decorateSkillReferences(main, [...guide.skills, ...(guide.demonSkills || [])]);
   bindRunePresets(main);
+  bindImportTabs(main);
   document.querySelector('#expand-loop')?.addEventListener('click', (event) => {
     const button = event.currentTarget;
     const expanded = button.getAttribute('aria-expanded') !== 'true';
@@ -35,6 +37,7 @@ if (id && !guide) {
       await navigator.clipboard.writeText(code.textContent);
       status.textContent = 'Código copiado!';
     } catch {
+      code.closest('details').open = true;
       const range = document.createRange();
       range.selectNodeContents(code);
       const selection = window.getSelection();

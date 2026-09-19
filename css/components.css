@@ -317,11 +317,54 @@
 .import-panel{
   margin-top:24px
 }
+.import-panel .panel-heading{
+  margin-bottom:14px
+}
+.import-tabs{
+  display:flex;
+  gap:6px;
+  margin:18px 0;
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px
+}
+.import-tabs button{flex:1;min-width:0;padding:10px 8px}
+.import-tabs button[aria-selected="true"]{background:var(--accent);color:#17131f;border-color:var(--accent)}
+.import-preset{margin-top:18px}
+.import-preset[hidden]{display:none}
+.import-panel .import-preview{margin:0 0 14px;user-select:none}
+.import-panel :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.import-code-disclosure{
+  border-top:1px solid var(--line)
+}
+.import-code-disclosure summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 2px 0;
+  color:var(--accent);
+  cursor:pointer;
+  font:600 11px var(--mono);
+  letter-spacing:.06em;
+  list-style:none
+}
+.import-code-disclosure summary::-webkit-details-marker{
+  display:none
+}
+.import-code-disclosure .disclosure-icon{
+  font-size:18px;
+  line-height:1;
+  transition:transform .2s ease
+}
+.import-code-disclosure[open] .disclosure-icon{
+  transform:rotate(180deg)
+}
 .import-panel code{
   display:block;
   overflow-wrap:anywhere;
   background:#111015;
   padding:16px;
+  margin-top:14px;
   border-radius:5px;
   font-size:12px;
   color:#c9b9e2;
@@ -330,10 +373,13 @@
 }
 .copy-status{
   display:block;
-  min-height:21px;
-  margin-top:10px;
+  min-height:0;
+  margin-top:0;
   font-size:12px;
   color:var(--accent)
+}
+.copy-status:not(:empty){
+  margin-top:10px
 }
 .gem-summary{
   display:flex;

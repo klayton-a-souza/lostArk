@@ -68,6 +68,8 @@ test('Dimensionalist import codes are exact and separately rendered', () => {
   const html = renderGuide(dimensionalist);
   assert.ok(html.includes(`>${primary}</code>`));
   assert.ok(html.includes(`>${alternative}</code>`));
+  assert.equal((html.match(/class="import-code-disclosure"/g) || []).length, 2);
+  assert.equal((html.match(/role="tab"/g) || []).length, 2);
 });
 
 test('rune presets remain complete and paired, population snapshot is separate', () => {
@@ -126,7 +128,7 @@ test('rotation preserves four generators without assigning a fixed Swoop', () =>
 });
 
 test('import code stays exact, including when rendered', () => {
-  const expected = '5FA846EB1A578396D83022DF48B9E09421D5EDA5AFAE6280CAE656A7F6B68815E5C92FDFE9F523D57DE1886601E52C15D17A78F6CAA5C212B46D1DDE7CB69CAD';
+  const expected = 'D055DE5564D82237A17C5009CF0CF62ECE33980201CE8E4B04CD14911FC9212EB9CA41776ED0B72E8BA5CE47CECF3FE6766C0891F1F2D2380B970024F311F036';
   assert.equal(guide.skillImport.code, expected);
   assert.ok(renderGuide(guide).includes(`>${expected}</code>`));
 });
