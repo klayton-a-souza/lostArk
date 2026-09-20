@@ -199,3 +199,19 @@ A consulta confirmou acessibilidade de quatro páginas, não todos os números o
 - Adicionado SVG da coleção comunitária Inven 3905703 (entrada svg/dimension_master.svg), cujo autor relata extração oficial. Origem direta oficial não confirmada; procedência específica registrada em sources.json.
 - Traçados/viewBox preservados, branco ajustado para #ede8d9 como Reaper. Home, sidebar e header utilizam o mesmo registro compartilhado.
 - 14 testes aprovados; navegador confirmou carregamento na Home e nas duas posições do guia. Captura da Home inspecionada.
+
+## Wildsoul — 20/09/2026
+
+- Complemento de raridades: 27 testes aprovados. Os três cores exibem Ancient 17P+ como alvo e Relic 17P como mínimo, com efeitos de 17P separados por raridade.
+- Runas: todas as opções da Wildsoul têm nome e raridade explícitos. A configuração principal usa Tailwind/Conviction Legendary, Ursine Windup/Judgment Legendary, Wealth Legendary/Epic/Rare conforme skill, Rolling Wheel Quick Recharge Legendary e Claw Purify Legendary; a variante iniciante usa Vulpine Velocity Quick Recharge Epic e Ursine Windup Galewind Legendary, com Quick Recharge Rare como alternativa da Claw.
+- Complemento verificado no navegador: Advanced mostra Tailwind/Conviction e Ursine Windup/Judgment; viewport de 390 px sem overflow horizontal; resumo dos cores legível; console sem erros ou warnings.
+
+- `node --test`: 25 testes aprovados, incluindo os quatro novos testes de Wildsoul e as regressões das classes anteriores.
+- `git diff --check`: sem erros de whitespace.
+- Build/lint: o projeto estático não tem scripts de build ou lint no package.json; não foi adicionada uma ferramenta sem necessidade.
+- Navegador: Home lista cinco guias; Wildsoul, Reaper, Dimensionalist, Shadowhunter e Valkyrie renderizam. Todas as âncoras internas verificadas têm alvo. Console sem erros ou warnings durante as verificações.
+- Wildsoul: Standard → Advanced e volta testados; seleção sincronizada entre Skills e Runes. Advanced mantém oito slots e substitui Vulpine Velocity por Tailwind, com o par Conviction/Judgment.
+- Os três details de Ark Grid foram abertos no navegador; Bear Frenzy mostra Relic +8.5% / Ancient +10.5%.
+- Viewports 1440, 768 e 390 px: sem overflow horizontal da página. As duas tabelas de gemas não têm overflow interno no mobile de 390 px. Nenhuma imagem quebrada detectada.
+- Dados dos quatro guias anteriores não foram modificados. Testes existentes continuam passando.
+- Assets ausentes e campos opcionais documentados no README; fallback de iniciais, sem downloads ou duplicações.

@@ -162,3 +162,20 @@ Extensões opcionais do schema, sem dados técnicos herdados das outras classes:
 - `overview.title`, `arkGrid.title`, `damageTitle`, `demonSkillSetupNote` e `runeNote` mantêm o conteúdo nos dados.
 
 O emblema Shadowhunter e as categorias Order Sun/Moon/Star já existem e são reutilizados. 18 ícones de skills foram extraídos das capturas fornecidas; apenas Blood Demonic Clone (X) aguarda imagem. Origem e convenção documentadas em `assets/images/skills/shadowhunter/README.md`; o fallback são iniciais, sem requisições 404. Não foi fornecido código de importação. Mecânicas preservadas do briefing, sem alegação de revalidação independente.
+
+## Wildsoul — Ferality 222 Bear Build
+
+Rota: `?guide=wildsoul-ferality-222`. Dados em `data/wildsoul-ferality-222.js`; catálogo e navegação usam o registro existente. O guia cobre os três Order Cores 2, stats, engravings, Ark Passive, oito skills, runas flexíveis, onze gemas por prioridade, Destiny, Ferality, opener, loop por gauge, recovery e utility. One-Hit Bear, Ripping Bear e Earthquake Pound ficam fora da barra normal.
+
+Extensões opcionais e retrocompatíveis:
+
+- `runePresets[].skills`: lista completa do preset. Quando presente, o seletor já existente sincroniza cards, barra e painel de runas. Standard usa Vulpine Velocity; Advanced troca apenas esse slot por Tailwind e usa Conviction em Tailwind / Judgment em Ursine Windup. Os cores e as gemas permanecem iguais. Sem esse campo, os presets antigos continuam locais à seção Runes.
+- `skills[].category`, `tag` e `runeOptions: { recommended?, alternative?, situational? }`: categorias, destaques e listas de opções sem inventar raridades. `specialSkillGroups` reutiliza os cards para skills externas aos oito slots.
+- `arkGrid.order[].expandable`: breakpoints dentro de `details/summary`, acessíveis por clique, teclado e touch. Os cores antigos preservam sua apresentação.
+- `runePanels`: explicações adicionais com o componente de painéis existente.
+
+Complemento de raridades: os três cores declaram `rarity: 'Ancient'`, `minimumRarity: 'Relic'` e `breakpoint: 17`, exibidos no card antes dos detalhes expansíveis. A comparação Relic/Ancient de 17P permanece nos breakpoints. `runeOptions` usa objetos `{ name, rarity, note }`; as assignments são derivadas da opção selecionada. Wildsoul agora declara as raridades por skill/preset no briefing Ark Grid 222, incluindo Wealth Epic/Rare, Quick Recharge Legendary, Purify Legendary e o par Conviction/Judgment Legendary. A variante iniciante mantém Vulpine Velocity com Quick Recharge Epic e Ursine Windup com Galewind Legendary. Os guias antigos continuam aceitando nome e raridade separados.
+
+Fonte: briefing fornecido pelo usuário. Bestial Resonance e Bear Frenzy 17P foram conferidos no patch oficial [Dimensions Unbound](https://www.playlostark.com/en-us/game/releases/dimensions-unbound). A revisão não representa validação independente de toda a build. Não foram inventados níveis de skill/gema, códigos de importação, alocação fixa de Bestial Resonance ou tripods de Tailwind.
+
+Assets: emblema Wildsoul e três imagens Order compartilhadas reutilizados. As skills fornecidas possuem ícones recortados das capturas do usuário, incluindo Earthquake Pound. Cards, barra, runas, gemas e referências textuais reutilizam o sistema compartilhado. Origem documentada em `assets/images/skills/wildsoul/README.md`. Engravings e Ark Passive continuam com os mesmos componentes/badges textuais do projeto.

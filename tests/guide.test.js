@@ -9,7 +9,7 @@ import { defaultRunePreset, runesSection, bindRunePresets } from '../js/componen
 import { escape, skillCard } from '../js/components/ui.js';
 
 test('every registered guide renders with valid internal section and skill references', () => {
-  assert.equal(guides.length, 4);
+  assert.equal(guides.length, 5);
   assert.equal(new Set(guides.map((item) => item.id)).size, guides.length);
   for (const item of guides) {
     assert.equal(getGuide(item.id), item);
@@ -21,7 +21,7 @@ test('every registered guide renders with valid internal section and skill refer
     assert.equal(ids.size, allSkills.length);
     const targets = new Set([...ids, ...Object.keys(item.gemTargets || {})]);
     for (const id of [...item.gems.damage, ...item.gems.cooldown, ...(item.damagePriority || []).flatMap((group) => group.skills)]) assert.ok(targets.has(id), id);
-    for (const id of [...(item.rotation.swoops || []), ...(item.rotation.blocks || []).flatMap((block) => block.skills), ...(item.skillSnapshot?.entries || []).map((entry) => entry.skill), ...(item.runePresets || []).flatMap((preset) => preset.assignments.map((entry) => entry.skill))]) assert.ok(ids.has(id), id);
+    for (const id of [...(item.rotation.swoops || []), ...(item.rotation.blocks || []).flatMap((block) => block.skills), ...(item.skillSnapshot?.entries || []).map((entry) => entry.skill), ...(item.runePresets || []).flatMap((preset) => preset.assignments.map((entry) => entry.skill))]) assert.ok(ids.has(id) || (item.runePresets || []).some(preset => preset.skills?.some(skill => skill.id === id)), id);
     for (const block of item.rotation.baseLoop || []) assert.ok(item.rotation.blocks.some((entry) => entry.id === block));
     for (const source of item.sources) assert.equal(new URL(source.url).protocol, 'https:');
     for (const core of [...item.arkGrid.order, ...item.arkGrid.chaos]) if (core.source) assert.ok(item.sources.some((source) => source.id === core.source));

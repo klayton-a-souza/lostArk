@@ -14,7 +14,7 @@ export function decorateSkillReferences(root, skills) {
   while (walker.nextNode()) nodes.push(walker.currentNode);
 
   for (const node of nodes) {
-    if (node.parentElement.closest('a, button, code, script, style, .asset, .skill-reference, .skill-title, .rotation-skill, .gem-skill, .rune-skill, .core-title, .tripods')) continue;
+    if (node.parentElement.closest('a, button, code, script, style, .asset, .skill-reference, .skill-title, .skill-bar, .rotation-skill, .gem-skill, .rune-skill, .core-title, .tripods')) continue;
     const matches = [...node.textContent.matchAll(pattern)];
     if (!matches.length) continue;
 

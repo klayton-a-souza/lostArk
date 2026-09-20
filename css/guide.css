@@ -1,3 +1,11 @@
+.core-details summary { cursor: pointer; padding: 12px 0; color: var(--accent); font-size: 13px; overflow-wrap: anywhere; }
+.core-details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.skill-rune-options { margin-top: 14px; }
+.skill-rune-options p { margin: 5px 0; }
+.skill-rune-options .rune { white-space: normal; overflow-wrap: anywhere; }
+.rune-detailed, .preset-rune-list .rune-detailed { flex-wrap: wrap; white-space: normal; max-width: 100%; overflow-wrap: anywhere; }
+.rune-detailed small { flex-shrink: 0; max-width: 100%; margin-left: 0; }
+.rune-option-note { display: block; flex-basis: 100%; color: var(--muted); font-size: 12px; margin-top: 4px; overflow-wrap: anywhere; }
 .guide-layout{
   display:grid;
   grid-template-columns:220px minmax(0,1fr);
@@ -568,7 +576,7 @@
 .rune-preset-controls button[aria-pressed="true"] { background: #30243f; border-color: var(--accent); color: #e3d5ff; }
 .rune-preset-controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .preset-rune-list .rune-skill { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.preset-rune-list .rune { white-space: nowrap; flex-shrink: 0; }
+.preset-rune-list .rune:not(.rune-detailed) { white-space: nowrap; flex-shrink: 0; }
 .preset-rune-list > div { flex-wrap: wrap; }
 .rune-preset-note, .rune-popularity { font-size: 12px; }
 .rune-popularity { margin-top: 16px; color: var(--muted); }

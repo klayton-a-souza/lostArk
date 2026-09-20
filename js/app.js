@@ -20,8 +20,8 @@ if (id && !guide) {
 } else if (guide) {
   document.title = `${guide.class} — ${guide.build} ${guide.variant} | ${site.name}`;
   main.innerHTML = renderGuide(guide);
-  decorateSkillReferences(main, [...guide.skills, ...(guide.demonSkills || [])]);
-  bindRunePresets(main);
+  decorateSkillReferences(main, [...guide.skills, ...(guide.demonSkills || []), ...(guide.runePresets || []).flatMap(preset => preset.skills || []), ...(guide.specialSkillGroups || []).flatMap(group => group.skills)]);
+  bindRunePresets(main, Boolean(guide.runePresets?.some(preset => preset.skills)));
   bindImportTabs(main);
   document.querySelector('#expand-loop')?.addEventListener('click', (event) => {
     const button = event.currentTarget;
