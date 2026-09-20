@@ -209,6 +209,16 @@
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:16px
 }
+.special-skill-groups{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  align-items:stretch
+}
+.special-skill-group{display:flex;flex-direction:column;min-width:0}
+.special-skill-group .skill-grid{grid-template-columns:minmax(0,1fr);flex:1}
+.special-skill-group .skill-card{height:100%;box-sizing:border-box}
+.special-skill-group .skill-card.damage{border-color:var(--line)}
 .priority-grid h4{
   font-size:13px
 }
@@ -440,7 +450,7 @@
   .summary-card .micro{
     font-size:8px
   }
-  .core-grid,.priority-grid,.skill-grid,.rotation-grid,.recovery-grid{
+  .core-grid,.priority-grid,.skill-grid,.rotation-grid,.recovery-grid,.special-skill-groups{
     grid-template-columns:1fr
   }
   .core-card{

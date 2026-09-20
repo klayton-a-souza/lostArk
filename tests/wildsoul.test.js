@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import guide from '../data/wildsoul-ferality-222.js';
 import { renderGuide } from '../js/guide-renderer.js';
 import { bindRunePresets } from '../js/components/runes.js';
@@ -100,6 +101,34 @@ test('Wildsoul runes match the supplied main and beginner rarity table', () => {
   assert.deepEqual([read(standard, 'vulpine-velocity'), read(standard, 'ursine-windup')].map(a => [a.rune, a.rarity]), [['Quick Recharge', 'Epic'], ['Galewind', 'Legendary']]);
   const claw = guide.skills.find(s => s.id === 'claw');
   assert.deepEqual(claw.runeOptions.alternative[0], { name: 'Quick Recharge', rarity: 'Rare', note: 'pode ser utilizado no lugar de Purify quando Cleanse não for necessário no conteúdo' });
+});
+
+test('Wildsoul skill import codes render Main and Chaos presets exactly', () => {
+  assert.equal(guide.skillImport.name, 'Main');
+  assert.equal(guide.skillImport.code, 'B315D583C09B6FC86A41A16B65C62029DCCB7CDF718728DFFAE56685C69A86B1E9604EE4C14D70F9EE48FA470CA83BEDE29C6370449A6574EEF7CAB9B0B9738B');
+  assert.deepEqual(guide.skillImport.alternatives, [{ name: 'Chaos', code: 'F653F6EE0A2D172A9218BBFDA917E3979937EC407A3128C9CCD9C913B716ACBF3C516AADAC1683DFC0212A252D157D1C89259EDC90B62669015EA2EE9D0A33FB', note: 'Configuração para Chaos' }]);
+  const html = renderGuide(guide);
+  assert.match(html, /Skill Import Code/);
+  assert.match(html, /Main/);
+  assert.match(html, /Chaos/);
+  assert.match(html, /B315D583C09B6FC8/);
+  assert.match(html, /F653F6EE0A2D172/);
+});
+
+test('special Wildsoul skills use the requested two-column layout order', () => {
+  const html = renderGuide(guide);
+  const special = html.slice(html.indexOf('<div class="special-skill-groups">'));
+  assert.match(special, /Forbidden Sorcery: Ripping Bear/);
+  assert.match(special, /Hyper Awakening Technique/);
+  assert.match(special, /Awakening normal/);
+  assert.ok(special.indexOf('Forbidden Sorcery: Ripping Bear') < special.indexOf('Hyper Awakening Technique'));
+  assert.ok(special.indexOf('Hyper Awakening Technique') < special.indexOf('Awakening normal'));
+});
+
+test('special skill grid stretches the paired cards to one row height', () => {
+  const css = readFileSync(new URL('../css/guide.css', import.meta.url), 'utf8');
+  assert.match(css, /\.special-skill-groups\{[\s\S]*align-items:stretch/);
+  assert.match(css, /\.special-skill-group \.skill-card\{height:100%/);
 });
 
 test('synchronized controls switch skills and runes together in both directions', () => {

@@ -7,6 +7,7 @@ import { guides, getGuide } from '../data/registry.js';
 import { renderGuide, getSections } from '../js/guide-renderer.js';
 import { defaultRunePreset, runesSection, bindRunePresets } from '../js/components/runes.js';
 import { escape, skillCard } from '../js/components/ui.js';
+import { getEngravingIcon } from '../data/engraving-icons.js';
 
 test('every registered guide renders with valid internal section and skill references', () => {
   assert.equal(guides.length, 5);
@@ -26,6 +27,10 @@ test('every registered guide renders with valid internal section and skill refer
     for (const source of item.sources) assert.equal(new URL(source.url).protocol, 'https:');
     for (const core of [...item.arkGrid.order, ...item.arkGrid.chaos]) if (core.source) assert.ok(item.sources.some((source) => source.id === core.source));
   }
+});
+
+test('engraving icons cover every primary engraving in the current guides', () => {
+  for (const item of guides) for (const engraving of item.engravings) assert.ok(getEngravingIcon(engraving));
 });
 
 test('Dimensionalist preserves eight Global skills and cycle-optimized levels, tripods and runes', () => {

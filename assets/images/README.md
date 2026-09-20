@@ -26,6 +26,10 @@ Nenhuma imagem externa é necessária. Adicione os PNGs nas pastas abaixo: os ca
 
 As pastas `runes/` e `gems/` reservam espaço para assets futuros. Use somente imagens para as quais você tenha autorização.
 
+## Engravings
+
+`engravings/` contém ícones para Adrenaline, Ambush Master, Cursed Doll, Grudge, Hit Master, Keen Blunt Weapon, Mass Increase, Raid Captain e Stabilized Status. Foram recortados da [referência comunitária de engravings no Inven](https://www.inven.co.kr/board/lostark/4821/102924), preservando a arte do jogo. `data/engraving-icons.js` associa nomes de engraving aos arquivos e a lista do guia exibe automaticamente os ícones disponíveis. MP Efficiency Increase ainda usa o marcador textual porque não estava presente na referência visual utilizada.
+
 ## Skills da Dimensionalist
 
 Os oito PNGs em `skills/dimensionalist/` foram recortados da captura fornecida pelo usuário em 17/09/2026, na ordem Needle Strike, Forewarning, Pinpoint Strike, Boundary Break, Cross Thrust, Airsplitter, Temporal Crush e Dimensional Break. Cada recorte preserva os 42 × 44 px disponíveis; a captura corta a extremidade esquerda dos ícones. As letras Q/W/E/R/A/S/D/F fazem parte da imagem e não representam atalhos obrigatórios. Nenhuma imagem de terceiros foi baixada.

@@ -590,6 +590,9 @@
   padding:0
 }
 .engraving-list li{
+  display:flex;
+  align-items:center;
+  gap:10px;
   padding:14px 18px;
   border:1px solid var(--line);
   background:var(--surface);
@@ -598,7 +601,12 @@
 }
 .engraving-list span{
   color:var(--gold);
-  margin-right:12px
+}
+.engraving-list img{
+  width:32px;
+  height:32px;
+  object-fit:cover;
+  border-radius:50%
 }
 .source-reference{
   padding:20px 0;
@@ -638,7 +646,7 @@
   width: 20px;
   height: 20px;
   margin-right: 5px;
-  vertical-align: -5px;
+  vertical-align: middle;
   border-radius: 4px;
   font-size: 8px;
 }

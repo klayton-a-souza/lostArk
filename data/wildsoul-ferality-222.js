@@ -73,6 +73,14 @@ export default {
     { title: 'Hyper Awakening Technique · Fora dos 8 slots', skills: [skill('one-hit-bear', 'One-Hit Bear', 'Hyper Awakening Technique', [], 'Generation / T-Skill', 'Principal: Nimble Movement para cooldown -50% e mais geração ao longo da luta. Alternativa: Ancient Strength para +800 Bear Energy e maior dano por uso. Use para alimentar o próximo Ripping Bear.', 'Sem gema nesta configuração')] },
     { title: 'Awakening normal', skills: [skill('earthquake-pound', 'Earthquake Pound', 'Awakening', [], 'Damage / Recovery', 'Awakening principal da Ferality 222; causa dano e, ao terminar, recupera 100% da Phantom Beast Energy.', 'Sem gema')] },
   ],
+  skillImport: {
+    name: 'Main',
+    code: 'B315D583C09B6FC86A41A16B65C62029DCCB7CDF718728DFFAE56685C69A86B1E9604EE4C14D70F9EE48FA470CA83BEDE29C6370449A6574EEF7CAB9B0B9738B',
+    note: 'Configuração principal da Ferality 222',
+    alternatives: [
+      { name: 'Chaos', code: 'F653F6EE0A2D172A9218BBFDA917E3979937EC407A3128C9CCD9C913B716ACBF3C516AADAC1683DFC0212A252D157D1C89259EDC90B62669015EA2EE9D0A33FB', note: 'Configuração para Chaos' },
+    ],
+  },
   runePresets: [
     { id: 'standard', name: 'Standard · Beginner', skills, note: 'Variante iniciante: Vulpine Velocity / Epic Quick Recharge e Ursine Windup / Legendary Galewind.', assignments: assignments(skills) },
     { id: 'advanced', name: 'Advanced · Principal', isDefault: true, skills: advancedSkills, note: 'Configuração principal: Tailwind / Legendary Conviction e Ursine Windup / Legendary Judgment.', assignments: assignments(advancedSkills), pairNote: 'Tailwind: Legendary Conviction → Ursine Windup: Legendary Judgment. Os muitos hits de Tailwind, em conjunto com Ursine Windup, ajudam a ativar o par de maneira consistente.' },
